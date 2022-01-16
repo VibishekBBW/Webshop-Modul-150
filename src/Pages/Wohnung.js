@@ -32,6 +32,7 @@ import Iframe from "react-iframe";
 function Wohnung() {
   const [house, setHouse] = useState([]);
   const [image, setImage] = useState([]);
+  const [anfahrt, setAnfahrt] = useState([]);
   const [display, setDisplay] = useState([]);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -49,6 +50,7 @@ function Wohnung() {
     let collectionHouses = await getDocs(collection(db, "houses"));
     let collectionData = [];
     let displayData = [];
+    let anf = [];
 
     collectionHouses.forEach(
       (doc) =>
@@ -117,6 +119,25 @@ function Wohnung() {
 
     //console.log(house);
     //console.log(imageData);
+
+    for (let i = 0; i < collectionData.length; i++) {
+      getDownloadURL(ref(storage, collectionData[i].doc)).then((pdf) => {
+        anf = [...anf, { url: pdf, name: collectionData[i].doc }];
+        //console.log("DisplayData:");
+        //console.log(displayData);
+        function compare(a, b) {
+          if (a.name > b.name) return 1;
+          if (b.name > a.name) return -1;
+
+          return 0;
+        }
+        anf.sort(compare);
+        setAnfahrt(anf);
+        console.log("ANFAHRT:");
+        console.log(anfahrt);
+      });
+      console.log(anfahrt);
+    }
   }
 
   /*
@@ -346,6 +367,15 @@ function Wohnung() {
                         <br />
                       </label>
                     </div>
+                    <br />
+                    {anfahrt
+                      .filter((pdf) => parseInt(pdf.name.charAt(0)) === idx + 1)
+                      .map((pdf, id) => (
+                        <a href={pdf.url} target="_blank">
+                          Download Anfahrt
+                        </a>
+                      ))}
+                    <br />
                     {image
                       .filter((img) => parseInt(img.name.charAt(0)) === idx + 1)
                       .map((img, id) => (

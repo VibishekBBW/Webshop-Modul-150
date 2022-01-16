@@ -25,6 +25,7 @@ import { getDocs, data } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { BackupOutlined, HouseSiding } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import Iframe from "react-iframe";
 
 function Haus() {
   const [haus, setHaus] = useState([]);
@@ -219,6 +220,16 @@ function Haus() {
                           <img src={img.url}></img>
                         </ImageListItem>
                       ))}
+                    Hotel auf Google Maps:
+                    <br />
+                    <Iframe
+                      url={obj.googlemaps}
+                      width="100%"
+                      height="300px"
+                      style="border:0;"
+                      allowfullscreen=""
+                      loading="lazy"
+                    ></Iframe>
                   </Modal.Body>
                   <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

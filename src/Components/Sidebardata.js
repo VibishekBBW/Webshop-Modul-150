@@ -22,7 +22,7 @@ export const sidebarData = [
     className: "nav-text",
   },
   {
-    title: "Houses",
+    title: "Luxury Houses",
     path: "/house",
     icon: <RiIcons.RiHome7Fill />,
     className: "nav-text",

@@ -14,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function SignUp({
   title,
@@ -35,6 +36,10 @@ function SignUp({
     });
   };
   */
+
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
 
   function Copyright(props) {
     return (
@@ -116,6 +121,10 @@ function SignUp({
                   />
                 </Grid>
               </Grid>
+              <ReCAPTCHA
+                sitekey="6LerfxceAAAAANqVIJajHJBGuJ1sn19Wtu0pZzci"
+                onChange={onChange}
+              />
               <Button
                 type="submit"
                 fullWidth

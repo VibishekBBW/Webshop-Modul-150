@@ -13,6 +13,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import ReCAPTCHA from "react-google-recaptcha";
+
 function SignInSide({
   title,
   setPassword,
@@ -33,6 +35,9 @@ function SignInSide({
     });
   };
   */
+  function onChange(value) {
+    console.log("Captcha value:", value);
+  }
 
   const theme = createTheme();
 
@@ -127,6 +132,10 @@ function SignInSide({
                   id="password"
                   autoComplete="current-password"
                   onChange={(e) => setPassword(e.target.value)}
+                />
+                <ReCAPTCHA
+                  sitekey="6LerfxceAAAAANqVIJajHJBGuJ1sn19Wtu0pZzci"
+                  onChange={onChange}
                 />
                 <Button
                   type="submit"

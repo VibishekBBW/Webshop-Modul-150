@@ -22,6 +22,16 @@ const firebaseConfig = {
   appId: "1:194441139132:web:227dbc5c6e9ffec463d1b9",
   measurementId: "G-6NBLM6JFJK",
 };
+/*
+const {
+  initializeAppCheck,
+  ReCaptchaV3Provider,
+} = require("firebase/app-check");
+
+export const appCheck = initializeAppCheck(app, {
+  provider: new ReCaptchaV3Provider('abcdefghijklmnopqrstuvwxy-1234567890abcd'),
+});
+*/
 
 /*
 const firebaseApp = initializeApp({

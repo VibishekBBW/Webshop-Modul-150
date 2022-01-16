@@ -36,6 +36,7 @@ function Haus() {
   const [sortedColl, setSortedColl] = useState([]);
   const [imageIndex, setImageIndex] = useState([]);
   let navigate = useNavigate();
+  const [flyers, setFlyers] = useState([]);
 
   async function fetchHaus() {
     let imageData = [];
@@ -44,6 +45,7 @@ function Haus() {
     let collectionHaus = await getDocs(collection(db, "haus"));
     let collectionData = [];
     let displayData = [];
+    let flyer = [];
 
     collectionHaus.forEach(
       (d) => (collectionData = [...collectionData, { ...d.data(), id: d.id }])
@@ -112,8 +114,27 @@ function Haus() {
     console.log("HOUSEDATA:");
     console.log(haus);
 
+    for (let i = 0; i < collectionData.length; i++) {
+      getDownloadURL(ref(storage, collectionData[i].flyer)).then((pdf) => {
+        flyer = [...flyer, { url: pdf, name: collectionData[i].flyer }];
+        //console.log("DisplayData:");
+        //console.log(displayData);
+        function compare(a, b) {
+          if (a.name > b.name) return 1;
+          if (b.name > a.name) return -1;
+
+          return 0;
+        }
+        flyer.sort(compare);
+        setFlyers(flyer);
+        console.log("FLYERS:");
+        console.log(flyers);
+      });
+    }
     //console.log(house);
     //console.log(imageData);
+    console.log("FLYERS:");
+    console.log(flyers);
   }
 
   useEffect(() => {
@@ -182,6 +203,15 @@ function Haus() {
                         <br />
                       </label>
                     </div>
+                    <br />
+                    {flyers
+                      .filter((pdf) => parseInt(pdf.name.charAt(0)) === idx + 1)
+                      .map((pdf, id) => (
+                        <a href={pdf.url} target="_blank">
+                          Download Flyer
+                        </a>
+                      ))}
+                    <br />
                     {bilder
                       .filter((img) => parseInt(img.name.charAt(0)) === idx + 1)
                       .map((img, id) => (

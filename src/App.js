@@ -30,6 +30,7 @@ import AllForm from "./Pages/AllForm";
 import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ReCAPTCHA from "react-google-recaptcha";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -151,9 +152,11 @@ function App() {
   useEffect(() => {
     let authToken = sessionStorage.getItem("Auth Token");
 
+    /*
     if (authToken) {
       navigate("/");
     }
+    */
 
     if (!authToken) {
       navigate("/sign-in");

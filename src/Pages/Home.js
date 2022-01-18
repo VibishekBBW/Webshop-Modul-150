@@ -11,6 +11,8 @@ import image6 from "../images/6.jpg";
 import image7 from "../images/7.jpg";
 import image8 from "../images/8.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "../CSS/Home.css";
+
 import {
   Col,
   Container as Cont,

@@ -21,11 +21,13 @@ import {
   FormControl,
 } from "react-bootstrap";
 import "../CSS/Hotel.css";
-import { getDocs, data } from "firebase/firestore";
+import { getDocs, data, doc, setDoc } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { BackupOutlined, HouseSiding } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import Iframe from "react-iframe";
+import Reservations from "./Reservations";
+import { useParams } from "react-router";
 
 function Haus() {
   const [haus, setHaus] = useState([]);
@@ -38,6 +40,7 @@ function Haus() {
   const [imageIndex, setImageIndex] = useState([]);
   let navigate = useNavigate();
   const [flyers, setFlyers] = useState([]);
+  const { idx } = useParams();
 
   async function fetchHaus() {
     let imageData = [];
@@ -138,8 +141,19 @@ function Haus() {
     console.log(flyers);
   }
 
+  async function pushHaus() {
+    /*
+    await setDoc(doc(db, "reservations", "1"), {
+      name: "name",
+      ort: "zürich",
+      country: "sitzerland",
+    });
+    */
+  }
+
   useEffect(() => {
     fetchHaus();
+    //pushHaus();
     let authToken = sessionStorage.getItem("Auth Token");
 
     if (authToken) {
@@ -150,6 +164,15 @@ function Haus() {
       navigate("/sign-in");
     }
   }, []);
+
+  const houseRes = (obj, idx) => {
+    let id = idx;
+    let ob = obj;
+    console.log(id);
+    console.log(ob);
+
+    <Reservations obj={ob} idx={id} />;
+  };
 
   return (
     <div className="haus">
@@ -235,11 +258,13 @@ function Haus() {
                     <Button variant="secondary" onClick={handleClose}>
                       Schliessen
                     </Button>
-                    <Link to="/form">
-                      <Button /*onSubmit={handleBemerkung}*/ variant="primary">
-                        Reservieren
-                      </Button>
-                    </Link>
+
+                    <Button
+                      /*onSubmit={handleBemerkung}*/ variant="primary"
+                      onClick={() => navigate(`/reservation/${idx}`)}
+                    >
+                      Reservieren
+                    </Button>
                   </Modal.Footer>
                 </Modal>
               </div>

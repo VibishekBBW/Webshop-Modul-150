@@ -20,7 +20,7 @@ import {
   Modal,
   FormControl,
 } from "react-bootstrap";
-import "../CSS/Hotel.css";
+import "../CSS/Hotel1.css";
 import { getDocs, data } from "firebase/firestore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import { BackupOutlined, HouseSiding } from "@mui/icons-material";
@@ -160,12 +160,10 @@ function Wohnung() {
   async function fetchHouses() {
     let collectionHouses = await getDocs(collection(db, "houses"));
     let collectionData = [];
-
     collectionHouses.forEach(
       (doc) =>
         (collectionData = [...collectionData, { ...doc.data(), id: doc.id }])
     );
-
     setHouse(collectionData);
     console.log(house.length);
     console.log(collectionData);
@@ -179,26 +177,21 @@ function Wohnung() {
     console.log(sortedImages);
   }
   
-
   
   function filterImages(props) {
     let name = imageIndex.name;
     newArr = name.filter((f) => f.charAt(0) === this.props.idx + 1);
-
     setImageIndex(newArr);
     console.log("Filter Array");
     console.log(newArr);
-
     return imageIndex.map((i) => (
       <ImageList variant="masonry" cols={3} gap={8}>
         <img src={i.url} idx={this.props.idx}></img>
       </ImageList>
     ));
   }
-
   console.log("Filter Array");
   console.log(newArr);
-
   */
 
   /*
@@ -210,10 +203,8 @@ function Wohnung() {
         backup.push(image[i]);
       }
     }
-
     console.log("Backup Images:");
     console.log(backup);
-
     for (let j = 0; j < backup.length; j++) {
       if (backup[j] === backup[j + 1]) {
         console.log(backup[j]);
@@ -222,7 +213,6 @@ function Wohnung() {
     }
     console.log("Backup cleared:");
     console.log(backup);
-
     return (
       <>
         {backup.map((e, id) => (

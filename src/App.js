@@ -8,6 +8,8 @@ import {
 import Navbar from "./Components/Navbar";
 import Home from "./Pages/Home";
 import Wohnung from "./Pages/Wohnung";
+import Reservations from "./Pages/Reservations";
+import HouseForm from "./Pages/HouseForm";
 import Haus from "./Pages/Haus";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
@@ -31,6 +33,7 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ReCAPTCHA from "react-google-recaptcha";
+import ShowReservations from "./Pages/ShowReservations";
 
 function App() {
   const [email, setEmail] = useState("");
@@ -47,10 +50,7 @@ function App() {
       createUserWithEmailAndPassword(auth, email, password)
         .then((response) => {
           navigate("/");
-          sessionStorage.setItem(
-            "Auth Token",
-            response._tokenResponse.refreshToken
-          );
+          sessionStorage.setItem("Auth Token", email);
           console.log(response);
           const user = response.user;
           toast.success("Logged-in successfully", {
@@ -101,10 +101,7 @@ function App() {
           const user = response.user;
 
           navigate("/");
-          sessionStorage.setItem(
-            "Auth Token",
-            response._tokenResponse.refreshToken
-          );
+          sessionStorage.setItem("Auth Token", email);
           //let gettoken = sessionStorage.getItem("Auth Token");
           //console.log(gettoken);
           console.log(user);
@@ -157,6 +154,7 @@ function App() {
       navigate("/");
     }
     */
+    //<Route path="/house-form" exact element={<HouseForm />} />
 
     if (!authToken) {
       navigate("/sign-in");
@@ -170,7 +168,7 @@ function App() {
 
         <Routes>
           <Route path="/hotel" element={<Wohnung />} />
-          <Route path="/house" element={<Haus />} />
+          <Route path=":idx" element={<Haus />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact-us" element={<Contact />} />
           <Route
@@ -202,6 +200,8 @@ function App() {
           <Route path="/hotel-form" element={<HotelForm />} />
           <Route path="/form" element={<AllForm />} />
           <Route path="/" exact element={<Home />} />
+          <Route path="/reservation/:idx" exact element={<Reservations />} />
+          <Route path="/your-reservations" element={<ShowReservations />} />
         </Routes>
       </>
 

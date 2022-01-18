@@ -40,6 +40,12 @@ export const sidebarData = [
     className: "nav-text",
   },
   {
+    title: "Your Reservations",
+    path: "/your-reservations",
+    icon: <BiIcons.BiUser />,
+    className: "nav-text",
+  },
+  {
     title: "Sign In",
     path: "/sign-in",
     icon: <FiIcons.FiLogIn />,

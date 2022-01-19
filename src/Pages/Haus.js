@@ -217,7 +217,7 @@ function Haus() {
                         <br />
                         <h4>Details:</h4>
                         <br />
-                        Preis: {obj.price}
+                        Kaufpreis: {obj.price}
                         <br />
                         Zimmertyp: {obj.year}
                         <br />

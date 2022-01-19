@@ -13,6 +13,7 @@ import HouseForm from "./Pages/HouseForm";
 import Haus from "./Pages/Haus";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
+import Thank from "./Pages/Thank";
 import Login from "./Pages/Login";
 import SignUp from "./Pages/SignUp";
 import { useState } from "react";
@@ -199,6 +200,8 @@ function App() {
           <Route path="/review" element={<Review />} />
           <Route path="/hotel-form" element={<HotelForm />} />
           <Route path="/form" element={<AllForm />} />
+          <Route path="/thank-you" element={<Thank />} />
+
           <Route path="/" exact element={<Home />} />
           <Route path="/reservation/:idx" exact element={<Reservations />} />
           <Route path="/your-reservations" element={<ShowReservations />} />

@@ -1,7 +1,6 @@
 import React from "react";
 import { collection, Firestore, getDoc } from "firebase/firestore";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -20,6 +19,17 @@ import { db, storage } from "../Firebase-config";
 import { getDocs, data, doc, setDoc, addDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router";
 import "../CSS/Hotel.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import {
+  Col,
+  Container as Cont,
+  Form,
+  Row,
+  Button,
+  ButtonGroup,
+  Modal,
+  FormControl,
+} from "react-bootstrap";
 
 function Reservations() {
   /*
@@ -106,6 +116,8 @@ function Reservations() {
       free: haus.free,
       year: haus.year,
     });
+
+    navigate("/thank-you");
   };
 
   return (
@@ -187,7 +199,9 @@ function Reservations() {
                 />
               </Grid>
             </Grid>
-            <button type="submit">Submit</button>
+            <br />
+
+            <Button type="submit">Submit</Button>
           </form>
         </div>
       </ThemeProvider>

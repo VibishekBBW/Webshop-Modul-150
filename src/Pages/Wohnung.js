@@ -346,7 +346,7 @@ function Wohnung() {
                         <br />
                         <h4>Details:</h4>
                         <br />
-                        Preis: {obj.price}
+                        Preis pro Nacht: {obj.price}
                         <br />
                         Zimmertyp: {obj.roomtype}
                         <br />

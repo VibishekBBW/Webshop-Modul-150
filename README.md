@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+You can view the project on the following link: https://webshop-150-vibishek-r.herokuapp.com/sign-in
+
 ## Available Scripts
 
 In the project directory, you can run:
